@@ -10,26 +10,25 @@ import routes from './routes';
 const app = express();
 
 // Bodyparser middleware
-app.use(
-    bodyParser.urlencoded({
-        extended: false,
-    })
-);
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // logging
 app.use(expressPinoLogger({ logger }));
+
+app.use(cookieParser());
+
+// Routes
+app.use('/api/users', routes.UserRoute);
 
 // DB Config
 const db = keys.mongoURI as string;
 
 // Connect to MongoDB
 mongoose
-    .connect(db, { useNewUrlParser: true })
+    .connect(db, { useNewUrlParser: true, useCreateIndex: true })
     .then(() => console.log('MongoDB successfully connected'))
     .catch(err => console.log(err));
-
-app.use('/api/users', routes.UserRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`Server up and running on port ${port}!`));
