@@ -65,6 +65,7 @@
     },
     "dependencies": {
         "@types/yup": "^0.26.18",
+        "cookie-parser": "^1.4.4",
         "dotenv": "^8.0.0",
         "dotenv-webpack": "^1.7.0",
         "express": "^4.17.1",

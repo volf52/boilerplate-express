@@ -1,11 +1,11 @@
 import 'babel-polyfill';
-import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import express from 'express';
 import expressPinoLogger from 'express-pino-logger';
 import mongoose from 'mongoose';
 import keys from './config/keys';
-import { logger } from './utils/logger';
 import routes from './routes';
+import { logger } from './utils/logger';
 
 const app = express();
 

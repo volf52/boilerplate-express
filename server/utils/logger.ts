@@ -6,7 +6,7 @@ import fs from 'fs';
 const cwd = process.cwd();
 const { env } = process;
 const logPath = `${cwd}/logs`;
-console.log(logPath);
+console.log(`Logs stored at ${logPath}`);
 
 const logThrough = new stream.PassThrough();
 const allLogs = fs.createWriteStream(`${logPath}/app.log`);
