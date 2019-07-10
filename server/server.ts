@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import keys from './config/keys';
 import routes from './routes';
 import { logger } from './utils/logger';
+import cookieSession from 'cookie-session'
 
 const app = express();
 
@@ -17,6 +18,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(expressPinoLogger({ logger }));
 
 app.use(cookieParser());
+app.use(
+    cookieSession({
+        name: 'session',
+        keys: [keys.EXPRESS_SESSION_SECRET],
+        maxAge: 24 * 60 * 60 * 1000,
+    } as CookieSessionInterfaces.CookieSessionOptions)
+);
+
 
 // Routes
 app.use('/api/users', routes.UserRoute);
